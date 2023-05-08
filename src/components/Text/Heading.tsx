@@ -1,12 +1,14 @@
 import { classNames } from '@/utils';
 
 const HEADING_CLASSES = {
-  h1: 'text-4xl font-semibold',
-  h2: 'text-2xl',
-  h3: 'text-xl',
-  h4: 'text-lg',
-  h5: 'text-base',
-  h6: 'text-sm',
+  // class="
+  h1: 'text-4xl text-gray-900 font-semibold',
+  h2: 'text-2xl text-gray-700',
+  h3: 'text-xl text-gray-700',
+  h4: 'text-lg text-gray-700',
+  h5: 'text-base text-gray-700',
+  h6: 'text-sm text-gray-700',
+  // "
 } as const;
 
 type HeadingProps = JSX.IntrinsicElements[keyof typeof HEADING_CLASSES] & {
