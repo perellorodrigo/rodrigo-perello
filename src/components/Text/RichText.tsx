@@ -18,6 +18,13 @@ export type RichTextRoot = {
   content: RichTextNode[];
 };
 
+const nodeElementLookup = {
+  p: Paragraph,
+  ul: 'ul',
+  ol: 'ol',
+  li: 'li',
+} as const;
+
 const isHeading = (
   node: RichTextNode
 ): node is RichTextNode & {
@@ -28,6 +35,7 @@ const renderText = (text: string) =>
   text
     .split('\n')
     .map((t, index) => [t, index > 0 ? <br key={index} /> : null]);
+
 const NodeRenderer = (node: RichTextNode) => {
   if (isHeading(node))
     return <Heading level={node.nodeType}>{node.value}</Heading>;
@@ -37,12 +45,8 @@ const NodeRenderer = (node: RichTextNode) => {
       ? renderText(node.value)
       : node.value.map(NodeRenderer);
 
-  if (node.nodeType === 'p') return <Paragraph>{thisValue}</Paragraph>;
-  if (node.nodeType === 'ul') return <ul>{thisValue}</ul>;
-  if (node.nodeType === 'ol') return <ol>{thisValue}</ol>;
-  if (node.nodeType === 'li') return <li>{thisValue}</li>;
-
-  return undefined;
+  const NodeElement = nodeElementLookup[node.nodeType];
+  return <NodeElement>{thisValue}</NodeElement>;
 };
 
 const RichText = (rootNode: RichTextRoot) => {
