@@ -18,11 +18,25 @@ export type RichTextRoot = {
   content: RichTextNode[];
 };
 
+const OrderedList = ({ children }: { children: React.ReactNode }) => (
+  <ol className="list-decimal list-inside">{children}</ol>
+);
+
+const UnorderedList = ({ children }: { children: React.ReactNode }) => (
+  <ul className="list-disc list-inside">{children}</ul>
+);
+
+const ListItem = ({ children }: { children: React.ReactNode }) => (
+  <li>
+    <Paragraph asSpan>{children}</Paragraph>
+  </li>
+);
+
 const nodeElementLookup = {
   p: Paragraph,
-  ul: 'ul',
-  ol: 'ol',
-  li: 'li',
+  ul: UnorderedList,
+  ol: OrderedList,
+  li: ListItem,
 } as const;
 
 const isHeading = (
