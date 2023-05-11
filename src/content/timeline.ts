@@ -7,7 +7,7 @@ import how_too from '@public/how_too.png';
 import koala from '@public/koala.png';
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/24/outline';
 
-type TimelineContent = {
+export type TimelineContent = {
   icon: typeof AcademicCapIcon | typeof BriefcaseIcon;
   image: StaticImageData;
   description: RichTextRoot;
@@ -33,8 +33,10 @@ export const timelineContent: Array<TimelineContent> = [
         },
         {
           nodeType: 'p',
-          value:
-            "I've completed my Bachelor in IT with a focus on mobile app development. During my studies I've learned about the following topics:",
+          value: `I've completed my Bachelor in IT with a focus on mobile app development. 
+          
+          
+          During my studies I've learned about the following topics:`,
         },
       ],
     },
@@ -59,6 +61,7 @@ export const timelineContent: Array<TimelineContent> = [
         {
           nodeType: 'p',
           value: `Development of page templates with PHP, HTML5/CSS3 and Foundation
+          
           
           Add website interactivity with JavaScript and CSS transitions and animations`,
         },

@@ -4,6 +4,7 @@ import { timelineContent } from '@/content/timeline';
 import { classNames } from '@/utils';
 import { ReactNode } from 'react';
 import Image from 'next/image';
+import Card from '@/components/Card';
 
 const stops = [
   {
@@ -74,37 +75,22 @@ export default async function Home() {
     <div {...classNames('container', 'mx-auto py-10')}>
       <div {...classNames('grid grid-cols-12')}>
         <div {...classNames('col-start-2 col-span-10', 'space-y-4')}>
-          <div className="grid grid-cols-[1fr_4px_0px] sm:grid-cols-[1fr_4px_1fr]">
+          <div
+            className="grid grid-cols-[1fr_4px_0px] sm:grid-cols-[1fr_4px_1fr]"
+            id="timeline"
+          >
             {timelineContent.map(({ description, image, icon }, index) => {
               const ContentNode = (
-                <div
-                  {...classNames(
-                    `relative overflow-hidden shadow-md rounded`,
-                    `flex flex-col items-center sm:even:col-start-auto even:col-start-1`,
-                    `m-4 p-6`,
-                    'bg-white',
-                    'space-y-2'
-                  )}
+                <Card
+                  content={{
+                    image,
+                    description,
+                  }}
+                  orientation={index % 2 === 0 ? 'left' : 'right'}
                   style={{
                     gridRowStart: index + 1,
                   }}
-                >
-                  <div
-                    {...classNames(
-                      stops[index % stops.length].bg,
-                      'absolute top-0 left-0 right-0 h-2'
-                    )}
-                  />
-                  <Image
-                    src={image}
-                    height={36}
-                    alt=""
-                    className="self-start"
-                  />
-                  {description && (
-                    <RichText document={description} className="space-y-2" />
-                  )}
-                </div>
+                />
               );
 
               const ComponentIcon = icon;
