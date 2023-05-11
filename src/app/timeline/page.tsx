@@ -1,130 +1,142 @@
 import Heading from '@/components/Text/Heading';
-import Paragraph from '@/components/Text/Paragraph';
-import RichText, { RichTextRoot } from '@/components/Text/RichText';
+import RichText from '@/components/Text/RichText';
+import { timelineContent } from '@/content/timeline';
 import { classNames } from '@/utils';
+import { ReactNode } from 'react';
+import Image from 'next/image';
 
-type TimelineContent = {
-  title: string;
-  date: string;
-  location: string;
-  description: RichTextRoot;
-};
-
-const timelineContent: Array<TimelineContent> = [
+const stops = [
   {
-    title: 'Bachelor in IT (Focus mobile app development)',
-    date: 'Oct 2017 to Oct 2019',
-    location: 'Academy of Information Technology',
-    description: {
-      content: [
-        {
-          nodeType: 'p',
-          value:
-            "I've completed my Bachelor in IT with a focus on mobile app development. During my studies I've learned about the following topics:",
-        },
-      ],
-    },
+    from: 'from-cyan-600',
+    to: 'to-gray-400', // 'to-indigo-100'
+    text: 'text-cyan-600',
+    bg: 'bg-cyan-600',
   },
   {
-    title: 'Web Development Intern',
-    date: 'Mar 2019 - Jun 2019',
-    location: 'The Studio Incubator - Sydney, Australia',
-    description: {
-      content: [
-        {
-          nodeType: 'ul',
-          value: [
-            {
-              nodeType: 'li',
-              value:
-                'Development of page templates with PHP, HTML5/CSS3 and Foundation',
-            },
-            {
-              nodeType: 'li',
-              value:
-                'Add website interactivity with JavaScript and CSS transitions and animations',
-            },
-          ],
-        },
-      ],
-    },
+    from: 'from-gray-900',
+    to: 'to-sky-100',
+    text: 'text-gray-900',
+    bg: 'bg-gray-900',
   },
   {
-    title: 'Front End Developer',
-    date: 'Jan 2020 - Sep 2020',
-    location: 'How Too Pty Ltd - Sydney, Australia',
-    description: {
-      content: [
-        {
-          nodeType: 'p',
-          value: `Developed e-learning authoring tool from pilot phase to finished commercial product using ReactJS and Node.`,
-        },
-        {
-          nodeType: 'p',
-          value: `Integrated proprietary software with external API's and services, such as Stripe, Hubspot and Prismic.`,
-        },
-      ],
-    },
+    from: 'from-sky-600',
+    text: 'text-sky-500',
+    bg: 'bg-sky-500',
+    to: 'to-cyan-100',
   },
   {
-    title: 'Full Stack Software Engineer',
-    date: 'Feb 2021 - Current',
-    location: 'Koala Sleep Pty Ltd - Sydney',
-    description: {
-      content: [
-        {
-          nodeType: 'p',
-          value: `
-          Integrate Single-page storefront application with headless e-commerce backend and proprietary order fulfilment software.
-
-          Design and integrate unit and end-to-end testing.
-          
-          Front-end development of UI components using ReactJS.
-            `,
-        },
-      ],
-    },
+    from: 'from-cyan-600',
+    to: 'to-cyan-100',
+    text: 'text-cyan-600',
+    bg: 'bg-cyan-600',
   },
 ];
 
-const Dot = () => (
-  <div className="absolute top-0 left-1/2 transform -translate-x-1/2 h-4 w-4 bg-sky-200 rounded-full"></div>
-);
-
-const Line = () => (
-  <div className="w-[4px] h-full bg-sky-100 relative">
-    <Dot />
+const Dot = ({ index, children }: { index: number; children: ReactNode }) => (
+  <div
+    {...classNames(
+      'absolute top-0 left-1/2 transform -translate-x-1/2 rounded-full',
+      'bg-white',
+      stops[index % stops.length].text
+    )}
+  >
+    {children}
   </div>
 );
 
-export default function Home() {
+const Line = ({
+  className,
+  index,
+  children,
+}: {
+  className?: string;
+  index: number;
+  children: ReactNode;
+}) => (
+  <div
+    {...classNames(
+      'w-[4px] h-full bg-gradient-to-b relative',
+      stops[index % stops.length].from,
+      stops[index % stops.length].to,
+      className
+    )}
+    style={{
+      gridColumnStart: '2',
+      gridRowStart: index + 1,
+    }}
+  >
+    <Dot index={index}>{children}</Dot>
+  </div>
+);
+
+export default async function Home() {
   return (
     <div {...classNames('container', 'mx-auto py-10')}>
       <div {...classNames('grid grid-cols-12')}>
-        <div
-          {...classNames('col-start-2 col-span-10', 'p-6 space-y-4', 'shadow')}
-        >
-          <Heading level="h1">Timeline</Heading>
-          <div className="grid grid-cols-[1fr_4px_1fr]">
-            {timelineContent.map(
-              ({ title, date, description, location }, index) => {
-                const ContentNode = (
-                  <div className="flex flex-col items-center m-4 p-4 bg-white shadow-md rounded">
-                    <Heading level="h3">{title}</Heading>
-                    <Paragraph size="md">{date}</Paragraph>
-                    {description && <RichText {...description} />}
-                  </div>
-                );
+        <div {...classNames('col-start-2 col-span-10', 'space-y-4')}>
+          <div className="grid grid-cols-[1fr_4px_0px] sm:grid-cols-[1fr_4px_1fr]">
+            {timelineContent.map(({ description, image, icon }, index) => {
+              const ContentNode = (
+                <div
+                  {...classNames(
+                    `relative overflow-hidden shadow-md rounded`,
+                    `flex flex-col items-center sm:even:col-start-auto even:col-start-1`,
+                    `m-4 p-6`,
+                    'bg-white',
+                    'space-y-2'
+                  )}
+                  style={{
+                    gridRowStart: index + 1,
+                  }}
+                >
+                  <div
+                    {...classNames(
+                      stops[index % stops.length].bg,
+                      'absolute top-0 left-0 right-0 h-2'
+                    )}
+                  />
+                  <Image
+                    src={image}
+                    height={36}
+                    alt=""
+                    className="self-start"
+                  />
+                  {description && (
+                    <RichText document={description} className="space-y-2" />
+                  )}
+                </div>
+              );
 
-                return (
-                  <>
-                    {index % 2 === 0 ? ContentNode : <div />}
-                    <Line />
-                    {index % 2 !== 0 ? ContentNode : <div />}
-                  </>
-                );
-              }
-            )}
+              const ComponentIcon = icon;
+
+              const PlaceHolderNode = (
+                <div
+                  className="sm:block sm:even:col-start-auto even:col-start-3"
+                  style={{
+                    gridRowStart: index + 1,
+                  }}
+                />
+              );
+
+              const isEven = index % 2 === 0;
+
+              if (isEven)
+                return [
+                  ContentNode,
+                  <Line index={index} key={index}>
+                    <ComponentIcon className="h-7 w-7" />{' '}
+                  </Line>,
+                  PlaceHolderNode,
+                ];
+              else
+                return [
+                  PlaceHolderNode,
+                  <Line index={index} key={index}>
+                    <ComponentIcon className="h-7 w-7" />{' '}
+                  </Line>,
+                  ContentNode,
+                ];
+            })}
           </div>
         </div>
       </div>

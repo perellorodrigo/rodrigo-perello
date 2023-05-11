@@ -19,21 +19,25 @@ export type RichTextRoot = {
 };
 
 const OrderedList = ({ children }: { children: React.ReactNode }) => (
-  <ol className="list-decimal list-inside">{children}</ol>
+  <ol className="list-decimal list-inside space-y-2">{children}</ol>
 );
 
 const UnorderedList = ({ children }: { children: React.ReactNode }) => (
-  <ul className="list-disc list-inside">{children}</ul>
+  <ul className="list-disc list-inside space-y-2">{children}</ul>
 );
 
 const ListItem = ({ children }: { children: React.ReactNode }) => (
   <li>
-    <Paragraph asSpan>{children}</Paragraph>
+    <Paragraph asSpan size="sm">
+      {children}
+    </Paragraph>
   </li>
 );
 
 const nodeElementLookup = {
-  p: Paragraph,
+  p: ({ children }: { children: React.ReactNode }) => (
+    <Paragraph size="sm">{children}</Paragraph>
+  ),
   ul: UnorderedList,
   ol: OrderedList,
   li: ListItem,
@@ -63,9 +67,15 @@ const NodeRenderer = (node: RichTextNode) => {
   return <NodeElement>{thisValue}</NodeElement>;
 };
 
-const RichText = (rootNode: RichTextRoot) => {
-  if (!Array.isArray(rootNode.content)) return null;
-  return <>{rootNode.content?.map(NodeRenderer)}</>;
+const RichText = ({
+  document,
+  className,
+}: {
+  document: RichTextRoot;
+  className?: string;
+}) => {
+  if (!Array.isArray(document.content)) return null;
+  return <div className={className}>{document.content?.map(NodeRenderer)}</div>;
 };
 
 export default RichText;
