@@ -11,6 +11,7 @@ export type TimelineContent = {
   icon: typeof AcademicCapIcon | typeof BriefcaseIcon;
   image: StaticImageData;
   description: RichTextRoot;
+  tags?: Array<string>;
 };
 
 export const timelineContent: Array<TimelineContent> = [
@@ -36,10 +37,28 @@ export const timelineContent: Array<TimelineContent> = [
           value: `I've completed my Bachelor in IT with a focus on mobile app development. 
           
           
-          During my studies I've learned about the following topics:`,
+          During my studies I've learned about the following topics`,
+        },
+        {
+          nodeType: 'ul',
+          value: [
+            {
+              nodeType: 'li',
+              value: 'Software Engineering',
+            },
+            {
+              nodeType: 'li',
+              value: 'Discrete Maths',
+            },
+            {
+              nodeType: 'li',
+              value: 'Lorem Ipsum',
+            },
+          ],
         },
       ],
     },
+    tags: ['React Native', 'PHP', 'HTML', 'C#', 'Objective-C', 'Java', 'Ionic'],
   },
   {
     icon: BriefcaseIcon,
@@ -67,10 +86,10 @@ export const timelineContent: Array<TimelineContent> = [
         },
       ],
     },
+    tags: ['Vanila JS', 'PHP', 'Wordpress', 'CSS'],
   },
   {
     icon: BriefcaseIcon,
-
     image: how_too,
     description: {
       content: [
@@ -97,10 +116,18 @@ export const timelineContent: Array<TimelineContent> = [
         },
       ],
     },
+    tags: [
+      'React',
+      'NextJS',
+      'Node',
+      'MySQL',
+      'TypeScript',
+      'Prismic',
+      'Stripe',
+    ],
   },
   {
     icon: BriefcaseIcon,
-
     image: koala,
     description: {
       content: [
@@ -122,6 +149,8 @@ export const timelineContent: Array<TimelineContent> = [
           value: `
             Integrate Single-page storefront application with headless e-commerce backend and proprietary order fulfilment software.
   
+            Lead development of new features and improvements to existing features, including Full Stack AB Testing
+            
             Design and integrate unit and end-to-end testing.
             
             Front-end development of UI components using ReactJS.
@@ -129,5 +158,18 @@ export const timelineContent: Array<TimelineContent> = [
         },
       ],
     },
+    tags: [
+      'Next JS',
+      'TypeScript',
+      'Tailwind CSS',
+      'Apollo',
+      'GraphQL',
+      'Cypress',
+      'AWS',
+      'Serverless',
+      'Commercetools',
+      'Contentful',
+      'Adyen',
+    ],
   },
 ];
