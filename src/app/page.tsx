@@ -1,12 +1,16 @@
 import Text from '@/components/Text';
-import { classNames } from '@/utils';
+import classNames from 'classnames';
 
 export default function Home() {
   return (
-    <div {...classNames('container', 'mx-auto py-10')}>
-      <div {...classNames('grid grid-cols-12')}>
+    <div className={classNames('container', 'mx-auto py-10')}>
+      <div className={classNames('grid grid-cols-12')}>
         <div
-          {...classNames('col-start-2 col-span-10', 'p-6 space-y-4', 'shadow')}
+          className={classNames(
+            'col-start-2 col-span-10',
+            'p-6 space-y-4',
+            'shadow'
+          )}
         >
           <Text.Heading level="h1">Hi 👋🏻, I’m Rod.</Text.Heading>
           <Text.Heading level="h3">

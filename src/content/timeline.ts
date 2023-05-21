@@ -26,7 +26,7 @@ export type TimelineContent = {
   image: StaticImageData;
   description: RichTextRoot;
   tags?: Array<string>;
-  colors?: {
+  colors: {
     from: `from-${ColorTypes}-${ColorTones}`;
     to?: `to-${ColorTypes}-${ColorTones}`;
     text: `text-${ColorTypes}-${ColorTones}`;

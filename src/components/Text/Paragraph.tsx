@@ -1,4 +1,4 @@
-import { classNames } from '@/utils';
+import classNames from 'classnames';
 
 type ParagraphProps = {
   size?: 'sm' | 'md' | 'lg';
@@ -18,22 +18,19 @@ const twSize = {
 };
 
 const Paragraph = ({ children, size, ...props }: ParagraphProps) => {
-  const classNamesObj = classNames(
-    'font-light text-gray-700',
-    twSize[size || 'md']
-  );
+  const classes = classNames('font-light text-gray-700', twSize[size || 'md']);
 
   if (props.asSpan) {
     const { asSpan, ...rest } = props;
     return (
-      <span {...rest} {...classNamesObj}>
+      <span {...rest} className={classes}>
         {children}
       </span>
     );
   }
 
   return (
-    <p {...props} {...classNamesObj}>
+    <p {...props} className={classes}>
       {children}
     </p>
   );

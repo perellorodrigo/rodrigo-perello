@@ -1,4 +1,4 @@
-import { classNames } from '@/utils';
+import classNames from 'classnames';
 
 const HEADING_CLASSES = {
   // class="
@@ -18,7 +18,7 @@ type HeadingProps = JSX.IntrinsicElements[keyof typeof HEADING_CLASSES] & {
 const Heading = ({ children, level, ...props }: HeadingProps) => {
   const HeadingComponent = level || 'h1';
   return (
-    <HeadingComponent {...classNames(HEADING_CLASSES[HeadingComponent])}>
+    <HeadingComponent className={classNames(HEADING_CLASSES[HeadingComponent])}>
       {children}
     </HeadingComponent>
   );

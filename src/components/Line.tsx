@@ -1,48 +1,19 @@
 'use client';
+import { TimelineContent } from '@/content/timeline';
 import classNames from 'classnames';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 
-const stops = [
-  {
-    from: 'from-cyan-600',
-    to: 'to-gray-400', // 'to-indigo-100'
-    text: 'text-cyan-600',
-    bg: 'bg-cyan-600',
-  },
-  {
-    from: 'from-gray-900',
-    to: 'to-sky-100',
-    text: 'text-gray-900',
-    bg: 'bg-gray-900',
-  },
-  {
-    from: 'from-sky-600',
-    text: 'text-sky-500',
-    bg: 'bg-sky-500',
-    to: 'to-cyan-100',
-  },
-  {
-    from: 'from-cyan-600',
-    to: '',
-    text: 'text-cyan-600',
-    bg: 'bg-cyan-600',
-  },
-];
-
 const Dot = ({
-  index,
   children,
   className,
 }: {
-  index: number;
   children: ReactNode;
   className: string;
 }) => (
   <div
     className={classNames(
       'absolute top-0 left-1/2 transform -translate-x-1/2 rounded-full',
-      'bg-white',
-      stops[index % stops.length].text
+      'bg-white'
     )}
   >
     <div className={className}> {children}</div>
@@ -50,13 +21,13 @@ const Dot = ({
 );
 
 const Line = ({
-  className,
   index,
   children,
+  colors,
 }: {
-  className?: string;
   index: number;
   children: ReactNode;
+  colors: TimelineContent['colors'];
 }) => {
   const lineRef = useRef<HTMLDivElement>(null);
   const previousRef = useRef({ y: 0, ratio: 0 });
@@ -108,14 +79,9 @@ const Line = ({
   const isIntersecting =
     intersectionState === 'down_enter' || intersectionState === 'up_enter';
 
-  console.log(index, intersectionState, isIntersecting);
   return (
     <div
-      className={classNames(
-        'w-[4px] h-full relative',
-
-        className
-      )}
+      className={classNames('w-[4px] h-full relative')}
       style={{
         gridColumnStart: '2',
         gridRowStart: index + 1,
@@ -125,9 +91,9 @@ const Line = ({
       <div
         className={classNames(
           'absolute bg-gradient-to-b top-0 left-0 right-0 h-full transform transition-transform duration-1000 rounded',
-          stops[index % stops.length].from,
-          stops[index % stops.length].to,
-          className,
+          colors.from,
+          colors.to,
+
           {
             'origin-bottom':
               intersectionState === 'up_enter' ||
@@ -140,10 +106,10 @@ const Line = ({
         )}
       ></div>
       <Dot
-        index={index}
         className={classNames(
           'transition-opacity duration-1000',
-          isIntersecting ? 'opacity-100' : 'opacity-0'
+          isIntersecting ? 'opacity-100' : 'opacity-0',
+          colors.text
         )}
       >
         {children}
