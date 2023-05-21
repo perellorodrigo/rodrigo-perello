@@ -31,7 +31,6 @@ const Line = ({
 }) => {
   const lineRef = useRef<HTMLDivElement>(null);
   const previousRef = useRef({ y: 0, ratio: 0 });
-  // const [isIntersecting, setIsIntersecting] = useState(false);
   const [intersectionState, setIntersectionState] = useState<
     'up_enter' | 'up_leave' | 'down_enter' | 'down_leave' | 'none'
   >();
