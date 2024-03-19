@@ -32,7 +32,7 @@ const Arrow = ({
       'text-neutral-300 hover:text-neutral-100',
       'transition-opacity duration-700',
       direction === 'up' && 'rotate-180',
-      visible ? 'opacity-100' : 'opacity-0'
+      visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
     )}
   >
     <button className="animate-bounce" onClick={handleArrowClick}>
