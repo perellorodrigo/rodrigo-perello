@@ -1,9 +1,9 @@
-import Paragraph from './Paragraph';
+import Paragraph, { ParagraphProps } from './Paragraph';
 import Heading from './Heading';
 
-const Text = {
-  Heading,
-  Paragraph,
-} as const;
+const Text = (props: ParagraphProps) => <Paragraph asSpan {...props} />;
+
+Text.Heading = Heading;
+Text.Paragraph = Paragraph;
 
 export default Text;

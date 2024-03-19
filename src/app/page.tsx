@@ -110,18 +110,27 @@ const Banner = ({
           </Text.Heading>
           <div className="relative flex flex-col items-center justify-evenly p-8 space-y-4 md:flex-row md:space-y-0">
             <div className="inline-flex space-x-2">
-              <a href="https://www.linkedin.com/in/rodrigo-perello-4a392b11b/">
-                <Text.Paragraph asSpan>Linkedin</Text.Paragraph>
+              <a
+                href="https://www.linkedin.com/in/rodrigo-perello-4a392b11b/"
+                className="hover:text-neutral-100"
+              >
+                <Text>Linkedin</Text>
               </a>
             </div>
             <div className="inline-flex space-x-2">
-              <a href="mailto:hello@rodrigoperello.com">
-                <Text.Paragraph asSpan>Email</Text.Paragraph>
+              <a
+                href="mailto:hello@rodrigoperello.com"
+                className="hover:text-neutral-100"
+              >
+                <Text>Email</Text>
               </a>
             </div>
             <div className="inline-flex space-x-2">
-              <a href="https://github.com/perellorodrigo">
-                <Text.Paragraph asSpan>Github</Text.Paragraph>
+              <a
+                href="https://github.com/perellorodrigo"
+                className="hover:text-neutral-100"
+              >
+                <Text>Github</Text>
               </a>
             </div>
             <div className="inline-flex space-x-2">
@@ -129,8 +138,9 @@ const Banner = ({
                 href={'/Rodrigo_Perello_Resume_2024-03.pdf'}
                 target="_blank"
                 rel="noopener noreferrer"
+                className="hover:text-neutral-100"
               >
-                <Text.Paragraph asSpan>Resume</Text.Paragraph>
+                <Text>Resume</Text>
               </a>
             </div>
           </div>
