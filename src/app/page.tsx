@@ -5,6 +5,7 @@ import Heading from '@/components/Text/Heading';
 import RichText, { RichTextRoot } from '@/components/Text/RichText';
 import { timelineContent } from '@/content/timeline';
 import classNames from 'classnames';
+import Link from 'next/link';
 import { PropsWithChildren, useRef } from 'react';
 
 const StarsAnimation = () => {
@@ -92,7 +93,11 @@ const Banner = ({ handleArrowClick }: { handleArrowClick: () => void }) => (
               </a>
             </div>
             <div className="inline-flex space-x-2">
-              <a href="">
+              <a
+                href={'/Rodrigo_Perello_Resume_2024-03.pdf'}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Text.Paragraph asSpan>Resume</Text.Paragraph>
               </a>
             </div>
