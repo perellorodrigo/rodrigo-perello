@@ -7,11 +7,9 @@ import classNames from 'classnames';
 
 type CardProps = {
   content: Pick<TimelineContent, 'image' | 'description' | 'tags'>;
-  style: JSX.IntrinsicElements['div']['style'];
-  orientation: 'left' | 'right';
 };
 
-const Card = ({ content, style, orientation }: CardProps) => {
+const Card = ({ content }: CardProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isIntersecting, setIsIntersecting] = useState(false);
 
@@ -43,32 +41,27 @@ const Card = ({ content, style, orientation }: CardProps) => {
     <div
       className={classNames(
         'transition-all duration-1000 ease-in-out',
-        `relative overflow-hidden shadow-md rounded`,
-        `flex flex-col items-center sm:even:col-start-auto even:col-start-1`,
-        `m-4 p-6`,
-        'bg-white',
+        `relative overflow-hidden rounded`,
+        `flex flex-col`,
         'space-y-4',
         isIntersecting
-          ? 'opacity-100 translate-x-0'
-          : `opacity-0 ${
-              orientation === 'left' ? '-translate-x-10' : 'translate-x-10'
-            }`
+          ? 'opacity-100 translate-x-0 visible'
+          : `opacity-0 translate-x-10 invisible`
       )}
-      style={style}
       ref={cardRef}
     >
-      <div className={classNames('absolute top-0 left-0 right-0 h-2')} />
-      <Image src={content.image} height={40} alt="" className="self-start" />
+      {content.image && (
+        <Image src={content.image} height={40} alt="" className="self-start" />
+      )}
       {content.description && (
         <RichText document={content.description} className="space-y-3" />
       )}
 
-      {/* <div className="flex flex-row space-x-2 self-start flex-wrap"> */}
       <div className="flex flex-row flex-wrap -m-1 self-start">
         {content.tags?.map((tag, index) => (
           <span
             key={index}
-            className="m-1 border-gray-300 border-2 rounded text-gray-500 text-xs p-1.5 text-st italic shadow-sm"
+            className="m-1 border-neutral-500 border-2 rounded text-neutral-300 text-xs p-1.5 text-st italic shadow-sm bg-neutral-700"
           >
             {tag}
           </span>

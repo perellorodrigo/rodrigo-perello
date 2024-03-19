@@ -1,19 +1,11 @@
 import './globals.css';
-import { Karla } from 'next/font/google';
 
-import Navbar from '@/components/NavBar';
-
-const karla = Karla({ subsets: ['latin'], variable: '--font-karla' });
+import classNames from 'classnames';
 
 export const metadata = {
   title: 'Rodrigo Perello',
   description: 'Portfolio Website',
 };
-
-const navItems = [
-  { name: 'Home', href: '/' },
-  { name: 'Timeline', href: '/timeline' },
-];
 
 export default function RootLayout({
   children,
@@ -21,9 +13,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`bg-white ${karla.variable}`}>
-      <body className={karla.className}>
-        <Navbar items={navItems} />
+    <html lang="en" className={`dark `}>
+      <body
+        className={classNames(
+          'relative',
+          'h-screen dark:bg-neutral-900 text-neutral-400'
+        )}
+      >
         <main>{children}</main>
       </body>
     </html>

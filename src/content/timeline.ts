@@ -1,46 +1,21 @@
 import { RichTextRoot } from '@/components/Text/RichText';
 
 import type { StaticImageData } from 'next/image';
-import ait from '@public/ait.png';
-import the_studio from '@public/the_studio.png';
-import how_too from '@public/how_too.png';
-import koala from '@public/koala.png';
+// import ait from '@public/ait.png';
+// import the_studio from '@public/the_studio.png';
+// import how_too from '@public/how_too.svg';
+// import koala from '@public/koala.png';
 import { AcademicCapIcon, BriefcaseIcon } from '@heroicons/react/24/outline';
 
-type ColorTones =
-  | '50'
-  | '100'
-  | '200'
-  | '300'
-  | '400'
-  | '500'
-  | '600'
-  | '700'
-  | '800'
-  | '900'
-  | '950';
-type ColorTypes = 'cyan' | 'gray' | 'sky';
-
 export type TimelineContent = {
-  icon: typeof AcademicCapIcon | typeof BriefcaseIcon;
-  image: StaticImageData;
   description: RichTextRoot;
+  icon?: typeof AcademicCapIcon | typeof BriefcaseIcon;
+  image?: StaticImageData;
   tags?: Array<string>;
-  colors: {
-    from: `from-${ColorTypes}-${ColorTones}`;
-    to?: `to-${ColorTypes}-${ColorTones}`;
-    text: `text-${ColorTypes}-${ColorTones}`;
-  };
 };
 
 const AIT: TimelineContent = {
-  image: ait,
   icon: AcademicCapIcon,
-  colors: {
-    from: 'from-cyan-600',
-    to: 'to-gray-400',
-    text: 'text-cyan-600',
-  },
   description: {
     content: [
       {
@@ -57,27 +32,8 @@ const AIT: TimelineContent = {
       },
       {
         nodeType: 'p',
-        value: `I've completed my Bachelor in IT with a focus on mobile app development. 
-          
-          
-          During my studies I've learned about the following topics`,
-      },
-      {
-        nodeType: 'ul',
-        value: [
-          {
-            nodeType: 'li',
-            value: 'Software Engineering',
-          },
-          {
-            nodeType: 'li',
-            value: 'Discrete Maths',
-          },
-          {
-            nodeType: 'li',
-            value: 'Lorem Ipsum',
-          },
-        ],
+        value: `I completed my Bachelor in Information Technology with a focus on mobile app development and web development at the Academy of Information Technology. This course taught me the fundamentals of coding and how to develop real world applications using various tools and technologies. I learned how to design, implement, test, and deploy mobile apps for iOS and Android using Cross Platform App framework and also Native. 
+                I also learned how to create dynamic and responsive web pages using HTML, CSS, React, and SQL. I gained valuable skills and knowledge that prepared me for a career in the IT industry as a software developer.`,
       },
     ],
   },
@@ -86,8 +42,6 @@ const AIT: TimelineContent = {
 
 const TheStudio: TimelineContent = {
   icon: BriefcaseIcon,
-  image: the_studio,
-  colors: { from: 'from-gray-900', to: 'to-sky-100', text: 'text-gray-900' },
   description: {
     content: [
       {
@@ -116,12 +70,7 @@ const TheStudio: TimelineContent = {
 
 const HowToo: TimelineContent = {
   icon: BriefcaseIcon,
-  image: how_too,
-  colors: {
-    from: 'from-sky-600',
-    text: 'text-sky-500',
-    to: 'to-cyan-100',
-  },
+  // image: how_too,
   description: {
     content: [
       {
@@ -152,11 +101,7 @@ const HowToo: TimelineContent = {
 
 const Koala: TimelineContent = {
   icon: BriefcaseIcon,
-  image: koala,
-  colors: {
-    from: 'from-cyan-600',
-    text: 'text-cyan-600',
-  },
+  // image: koala,
   description: {
     content: [
       {

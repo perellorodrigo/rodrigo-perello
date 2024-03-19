@@ -1,12 +1,12 @@
 import classNames from 'classnames';
 
-type ParagraphProps = {
+export type ParagraphProps = {
   size?: 'sm' | 'md' | 'lg';
 } & (
-  | (Omit<JSX.IntrinsicElements['p'], 'className'> & {
+  | (JSX.IntrinsicElements['p'] & {
       readonly asSpan?: undefined | false | never;
     })
-  | (Omit<JSX.IntrinsicElements['span'], 'className'> & {
+  | (JSX.IntrinsicElements['span'] & {
       readonly asSpan: true;
     })
 );
@@ -18,7 +18,11 @@ const twSize = {
 };
 
 const Paragraph = ({ children, size, ...props }: ParagraphProps) => {
-  const classes = classNames('font-light text-gray-700', twSize[size || 'md']);
+  const classes = classNames(
+    'font-light',
+    twSize[size || 'md'],
+    props.className
+  );
 
   if (props.asSpan) {
     const { asSpan, ...rest } = props;

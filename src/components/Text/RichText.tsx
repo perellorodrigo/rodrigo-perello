@@ -1,5 +1,5 @@
 import Heading from '@/components/Text/Heading';
-import Paragraph from '@/components/Text/Paragraph';
+import Paragraph, { type ParagraphProps } from '@/components/Text/Paragraph';
 
 const headingNodes = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] as const;
 type HeadingTypes = (typeof headingNodes)[number];
@@ -8,10 +8,12 @@ type RichTextNode =
   | {
       nodeType: 'p' | 'ul' | 'ol' | 'li';
       value: string | RichTextNode[];
+      size?: ParagraphProps['size'];
     }
   | {
       nodeType: HeadingTypes;
       value: string;
+      className?: string;
     };
 
 export type RichTextRoot = {
@@ -35,8 +37,18 @@ const ListItem = ({ children }: { children: React.ReactNode }) => (
 );
 
 const nodeElementLookup = {
-  p: ({ children }: { children: React.ReactNode }) => (
-    <Paragraph size="sm">{children}</Paragraph>
+  p: ({
+    children,
+    size,
+    className,
+  }: {
+    children: React.ReactNode;
+    size: ParagraphProps['size'];
+    className: string;
+  }) => (
+    <Paragraph size={size} className={className}>
+      {children}
+    </Paragraph>
   ),
   ul: UnorderedList,
   ol: OrderedList,
@@ -56,7 +68,11 @@ const renderText = (text: string) =>
 
 const NodeRenderer = (node: RichTextNode) => {
   if (isHeading(node))
-    return <Heading level={node.nodeType}>{node.value}</Heading>;
+    return (
+      <Heading level={node.nodeType} className={node.className}>
+        {node.value}
+      </Heading>
+    );
 
   const thisValue =
     typeof node.value === 'string'
@@ -64,7 +80,11 @@ const NodeRenderer = (node: RichTextNode) => {
       : node.value.map(NodeRenderer);
 
   const NodeElement = nodeElementLookup[node.nodeType];
-  return <NodeElement>{thisValue}</NodeElement>;
+  return (
+    <NodeElement size={node.size} className="my-2">
+      {thisValue}
+    </NodeElement>
+  );
 };
 
 const RichText = ({

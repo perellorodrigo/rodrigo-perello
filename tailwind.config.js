@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/** @type { import('tailwindcss').Config } */
 module.exports = {
   darkMode: 'class',
   content: [
@@ -7,10 +7,29 @@ module.exports = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/content/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  extend: {
-    fontFamily: {
-      sans: ['var(--font-karla)']
+  theme: {
+    extend: {
+      keyframes: {
+        'stars': {
+          '0%, 100%': {
+            opacity: 0,
+          },
+          '5%': {
+            opacity: 0.8,
+          },
+          '80%': {
+            opacity: 0.8,
+          },
+          '100%': {
+            transform: 'translateY(300px)',
+            opacity: 0,
+          },
+        },
+      },
+      animation: {
+        'stars': 'stars 16s ease-in-out infinite',
+      },
     },
   },
   plugins: [],
-}
+};
