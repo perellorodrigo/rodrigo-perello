@@ -2,12 +2,12 @@ import classNames from 'classnames';
 
 const HEADING_CLASSES = {
   // class="
-  h1: 'text-4xl text-gray-900 font-semibold dark:text-slate-100',
-  h2: 'text-2xl text-gray-700 dark:text-slate-100',
-  h3: 'text-xl text-gray-700 dark:text-slate-100',
-  h4: 'text-lg text-gray-700 dark:text-slate-100',
-  h5: 'text-base text-gray-700 dark:text-slate-100',
-  h6: 'text-sm text-gray-700 dark:text-slate-100',
+  h1: 'text-4xl  font-semibold dark:text-neutral-200',
+  h2: 'text-2xl text-neutral-700 dark:text-neutral-200',
+  h3: 'text-xl text-neutral-700 dark:text-neutral-200',
+  h4: 'text-lg text-neutral-700 dark:text-neutral-200',
+  h5: 'text-base text-neutral-700 dark:text-neutral-200',
+  h6: 'text-sm text-neutral-700 dark:text-neutral-300',
   // "
 } as const;
 
