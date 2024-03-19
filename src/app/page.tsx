@@ -74,7 +74,7 @@ const Banner = ({ handleArrowClick }: { handleArrowClick: () => void }) => (
         <div className={classNames('p-6 space-y-4')}>
           <Text.Heading level="h1">Hi 👋🏻, I’m Rod.</Text.Heading>
           <Text.Heading level="h3">
-            Full Stack Software Enginneer @ Koala.
+            Full Stack Software Engineer @ Koala.
           </Text.Heading>
           <div className="relative flex flex-col items-center justify-evenly p-8 space-y-4 md:flex-row md:space-y-0">
             <div className="inline-flex space-x-2">
