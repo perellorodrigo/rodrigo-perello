@@ -93,42 +93,45 @@ const Banner = ({
 
   return (
     <div
-      className="w-full h-screen relative flex justify-center items-center text-center"
+      className={classNames(
+        'w-full h-screen relative',
+        'flex justify-center items-center',
+        'text-center'
+      )}
       ref={bannerRef}
     >
       <StarsAnimation />
-      <div className="relative">
-        <div className={classNames('container', 'mx-auto relative z-20')}>
-          <div className={classNames('p-6 space-y-4')}>
-            <Text.Heading level="h1">Hi 👋🏻, I’m Rod.</Text.Heading>
-            <Text.Heading level="h3">
-              Full Stack Software Engineer @ Koala.
-            </Text.Heading>
-            <div className="relative flex flex-col items-center justify-evenly p-8 space-y-4 md:flex-row md:space-y-0">
-              <div className="inline-flex space-x-2">
-                <a href="https://www.linkedin.com/in/rodrigo-perello-4a392b11b/">
-                  <Text.Paragraph asSpan>Linkedin</Text.Paragraph>
-                </a>
-              </div>
-              <div className="inline-flex space-x-2">
-                <a href="mailto:hello@rodrigoperello.com">
-                  <Text.Paragraph asSpan>Email</Text.Paragraph>
-                </a>
-              </div>
-              <div className="inline-flex space-x-2">
-                <a href="https://github.com/perellorodrigo">
-                  <Text.Paragraph asSpan>Github</Text.Paragraph>
-                </a>
-              </div>
-              <div className="inline-flex space-x-2">
-                <a
-                  href={'/Rodrigo_Perello_Resume_2024-03.pdf'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Text.Paragraph asSpan>Resume</Text.Paragraph>
-                </a>
-              </div>
+
+      <div className={classNames('container', 'relative z-20')}>
+        <div className={classNames('p-6 space-y-4 max-w-xl mx-auto')}>
+          <Text.Heading level="h1">Hi 👋🏻, I’m Rod.</Text.Heading>
+          <Text.Heading level="h3">
+            Full Stack Software Engineer @ Koala.
+          </Text.Heading>
+          <div className="relative flex flex-col items-center justify-evenly p-8 space-y-4 md:flex-row md:space-y-0">
+            <div className="inline-flex space-x-2">
+              <a href="https://www.linkedin.com/in/rodrigo-perello-4a392b11b/">
+                <Text.Paragraph asSpan>Linkedin</Text.Paragraph>
+              </a>
+            </div>
+            <div className="inline-flex space-x-2">
+              <a href="mailto:hello@rodrigoperello.com">
+                <Text.Paragraph asSpan>Email</Text.Paragraph>
+              </a>
+            </div>
+            <div className="inline-flex space-x-2">
+              <a href="https://github.com/perellorodrigo">
+                <Text.Paragraph asSpan>Github</Text.Paragraph>
+              </a>
+            </div>
+            <div className="inline-flex space-x-2">
+              <a
+                href={'/Rodrigo_Perello_Resume_2024-03.pdf'}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Text.Paragraph asSpan>Resume</Text.Paragraph>
+              </a>
             </div>
           </div>
         </div>
