@@ -88,11 +88,15 @@ const HowToo: TimelineContent = {
 
       {
         nodeType: 'p',
-        value: `Developed e-learning authoring tool from pilot phase to finished commercial product using ReactJS and Node.`,
+        value: `Developed e-learning authoring, transitioning it from a pilot phase to a commercially viable product using ReactJS and Node, enhancing digital learning capabilities.`,
       },
       {
         nodeType: 'p',
-        value: `Integrated proprietary software with external API's and services, such as Stripe, Hubspot and Prismic.`,
+        value: `Designed and deployed custom JavaScript applications with integrated gamification elements, which included complex animations, serving as comprehensive learning and induction tools for employees, which increased engagement and facilitated knowledge retention.`,
+      },
+      {
+        nodeType: 'p',
+        value: `Integrating proprietary software with external API's and services, such as Stripe, Hubspot and Prismic.`,
       },
     ],
   },
@@ -116,18 +120,65 @@ const Koala: TimelineContent = {
         nodeType: 'h6',
         value: 'Feb 2021 - Current',
       },
-
       {
-        nodeType: 'p',
-        value: `
-            Integrate Single-page storefront application with headless e-commerce backend and proprietary order fulfilment software.
-  
-            Lead development of new features and improvements to existing features, including Full Stack AB Testing
-            
-            Design and integrate unit and end-to-end testing.
-            
-            Front-end development of UI components using ReactJS.
-              `,
+        nodeType: 'ul',
+        value: [
+          {
+            nodeType: 'li',
+            value:
+              'Developed a storefront application from scratch using NextJS, seamlessly integrating with a headless Commercetools e-commerce backend and proprietary order fulfillment software, enhancing customer experience.',
+          },
+          {
+            nodeType: 'li',
+            value:
+              'Designed and maintained a comprehensive React and Tailwind component library, leveraging Storybook for component testing and documentation, ensuring consistency and reliability across projects.',
+          },
+          {
+            nodeType: 'li',
+            value:
+              'Led the development of key features, including; a Server Side AB Testing framework, an advanced product search functionality, and user accounts, significantly improving user engagement and conversion rates.',
+          },
+          {
+            nodeType: 'li',
+            value:
+              'Developed and maintained Serverless AWS Lambdas for bespoke operational and logistical business logic, optimizing processes and reducing operational costs.',
+          },
+          {
+            nodeType: 'li',
+            value:
+              'Worked on the design of a GraphQL service, adopting a code-first approach with Nexus, to serve both the storefront application and other services, enhancing data integration and retrieval.',
+          },
+          {
+            nodeType: 'li',
+            value:
+              'Assumed responsibility for the creation of technical documentation, covering both proof of concepts and the final implementations, ensuring clarity and accessibility for technical teams and stakeholders.',
+          },
+          {
+            nodeType: 'li',
+            value:
+              'Constructed and managed CI/CD pipelines within GitHub for end-to-end testing, serverless functions, and dockerized builds, optimizing deployment processes.',
+          },
+          {
+            nodeType: 'li',
+            value:
+              'Reviewed over 800 Pull Requests, providing constructive feedback and mentoring to junior developers, fostering a culture of continuous learning within the team.',
+          },
+          {
+            nodeType: 'li',
+            value:
+              'Performed continuous optimization of the platform, including bundle size reduction and JavaScript profiling to rectify memory leaks, elevating the user experience.',
+          },
+          {
+            nodeType: 'li',
+            value:
+              'Optimized architecture for server-side A/B Testing, implementing effective caching and standardization strategies to maintain site speed.',
+          },
+          {
+            nodeType: 'li',
+            value:
+              'Created scripts to assist content producers by automating data integration into Commercetools and Contentful, significantly easing content management tasks.',
+          },
+        ],
       },
     ],
   },

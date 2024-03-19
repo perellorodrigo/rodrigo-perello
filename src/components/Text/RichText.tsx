@@ -29,10 +29,8 @@ const UnorderedList = ({ children }: { children: React.ReactNode }) => (
 );
 
 const ListItem = ({ children }: { children: React.ReactNode }) => (
-  <li>
-    <Paragraph asSpan size="sm">
-      {children}
-    </Paragraph>
+  <li className="list-none">
+    <Paragraph asSpan>{children}</Paragraph>
   </li>
 );
 
