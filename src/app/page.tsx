@@ -67,7 +67,7 @@ const ContentSection = ({ children }: PropsWithChildren) => {
 };
 
 const Banner = ({ handleArrowClick }: { handleArrowClick: () => void }) => (
-  <div className="w-full h-screen max-h-[1000px] relative flex justify-center items-center text-center">
+  <div className="w-full h-screen relative flex justify-center items-center text-center">
     <StarsAnimation />
     <div className="relative">
       <div className={classNames('container', 'mx-auto relative z-20')}>
