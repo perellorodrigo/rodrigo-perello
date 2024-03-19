@@ -1,11 +1,19 @@
 'use client';
-import { PropsWithChildren, forwardRef, memo, useRef } from 'react';
+import {
+  PropsWithChildren,
+  forwardRef,
+  memo,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import classNames from 'classnames';
 
 import Card from '@/components/Card';
 import Text from '@/components/Text';
 import Heading from '@/components/Text/Heading';
 import { timelineContent } from '@/content/timeline';
+import Arrow from '@/components/Arrow';
 
 const _StarsAnimation = () => {
   const stars = Array.from({ length: 50 }, (_, i) => {
@@ -40,25 +48,6 @@ const _StarsAnimation = () => {
 
 const StarsAnimation = memo(_StarsAnimation);
 
-const ArrowDown = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-      className="w-8 h-8"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-      />
-    </svg>
-  );
-};
-
 const ContentSection = forwardRef<HTMLDivElement, PropsWithChildren>(
   ({ children }, ref) => {
     return (
@@ -71,63 +60,108 @@ const ContentSection = forwardRef<HTMLDivElement, PropsWithChildren>(
 
 ContentSection.displayName = 'ContentSection';
 
-const Banner = ({ handleArrowClick }: { handleArrowClick: () => void }) => (
-  <div className="w-full h-screen relative flex justify-center items-center text-center">
-    <StarsAnimation />
-    <div className="relative">
-      <div className={classNames('container', 'mx-auto relative z-20')}>
-        <div className={classNames('p-6 space-y-4')}>
-          <Text.Heading level="h1">Hi 👋🏻, I’m Rod.</Text.Heading>
-          <Text.Heading level="h3">
-            Full Stack Software Engineer @ Koala.
-          </Text.Heading>
-          <div className="relative flex flex-col items-center justify-evenly p-8 space-y-4 md:flex-row md:space-y-0">
-            <div className="inline-flex space-x-2">
-              <a href="https://www.linkedin.com/in/rodrigo-perello-4a392b11b/">
-                <Text.Paragraph asSpan>Linkedin</Text.Paragraph>
-              </a>
-            </div>
-            <div className="inline-flex space-x-2">
-              <a href="mailto:hello@rodrigoperello.com">
-                <Text.Paragraph asSpan>Email</Text.Paragraph>
-              </a>
-            </div>
-            <div className="inline-flex space-x-2">
-              <a href="https://github.com/perellorodrigo">
-                <Text.Paragraph asSpan>Github</Text.Paragraph>
-              </a>
-            </div>
-            <div className="inline-flex space-x-2">
-              <a
-                href={'/Rodrigo_Perello_Resume_2024-03.pdf'}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Text.Paragraph asSpan>Resume</Text.Paragraph>
-              </a>
+const Banner = ({
+  handleArrowClick,
+}: PropsWithChildren<{
+  handleArrowClick: (direction: 'up' | 'down') => void;
+}>) => {
+  const bannerRef = useRef<HTMLDivElement>(null);
+  const [arrowVisibilityState, setArrowVisibilityState] = useState<
+    'invisible' | 'up' | 'down'
+  >('down');
+
+  useEffect(() => {
+    const { current } = bannerRef;
+    const cb: IntersectionObserverCallback = ([{ intersectionRatio }]) => {
+      if (intersectionRatio > 0.35 && intersectionRatio < 0.75) {
+        setArrowVisibilityState('invisible');
+      } else {
+        setArrowVisibilityState(intersectionRatio > 0.1 ? 'down' : 'up');
+      }
+    };
+
+    const observer = new IntersectionObserver(cb, {
+      threshold: [0.05, 0.4, 0.7, 0.9],
+    });
+
+    if (current) observer.observe(current);
+
+    return () => {
+      if (current) observer.unobserve(current);
+    };
+  }, []);
+
+  return (
+    <div
+      className="w-full h-screen relative flex justify-center items-center text-center"
+      ref={bannerRef}
+    >
+      <StarsAnimation />
+      <div className="relative">
+        <div className={classNames('container', 'mx-auto relative z-20')}>
+          <div className={classNames('p-6 space-y-4')}>
+            <Text.Heading level="h1">Hi 👋🏻, I’m Rod.</Text.Heading>
+            <Text.Heading level="h3">
+              Full Stack Software Engineer @ Koala.
+            </Text.Heading>
+            <div className="relative flex flex-col items-center justify-evenly p-8 space-y-4 md:flex-row md:space-y-0">
+              <div className="inline-flex space-x-2">
+                <a href="https://www.linkedin.com/in/rodrigo-perello-4a392b11b/">
+                  <Text.Paragraph asSpan>Linkedin</Text.Paragraph>
+                </a>
+              </div>
+              <div className="inline-flex space-x-2">
+                <a href="mailto:hello@rodrigoperello.com">
+                  <Text.Paragraph asSpan>Email</Text.Paragraph>
+                </a>
+              </div>
+              <div className="inline-flex space-x-2">
+                <a href="https://github.com/perellorodrigo">
+                  <Text.Paragraph asSpan>Github</Text.Paragraph>
+                </a>
+              </div>
+              <div className="inline-flex space-x-2">
+                <a
+                  href={'/Rodrigo_Perello_Resume_2024-03.pdf'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Text.Paragraph asSpan>Resume</Text.Paragraph>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white hover:text-neutral-300">
-      <button className="animate-bounce" onClick={handleArrowClick}>
-        <ArrowDown />
-      </button>
+      <Arrow
+        direction="up"
+        visible={arrowVisibilityState === 'up'}
+        handleArrowClick={() => handleArrowClick('up')}
+      />
+      <Arrow
+        direction="down"
+        visible={arrowVisibilityState === 'down'}
+        handleArrowClick={() => handleArrowClick('down')}
+      />
     </div>
-  </div>
-);
+  );
+};
+
+Banner.displayName = 'Banner';
 
 export default function Home() {
   const contentRef = useRef<HTMLDivElement>(null);
+  const startRef = useRef<HTMLDivElement>(null);
 
-  const handleArrowClick = () => {
-    contentRef.current?.scrollIntoView({ behavior: 'smooth' });
+  const handleArrowClick = (direction: 'up' | 'down') => {
+    const elementToScroll = direction === 'up' ? startRef : contentRef;
+    elementToScroll.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <>
+      <div ref={startRef}></div>
       <Banner handleArrowClick={handleArrowClick} />
       <ContentSection ref={contentRef}>
         <Heading level="h2" className="text-center">
@@ -159,9 +193,9 @@ export default function Home() {
         </Heading>
         <div className="space-y-8 mt-8 overflow-hidden">
           {timelineContent.map(
-            ({ icon: IconComponent, ...restContent }, index) => {
-              return <Card key={`${index}-card`} content={restContent} />;
-            }
+            ({ icon: IconComponent, ...restContent }, index) => (
+              <Card key={`${index}-card`} content={restContent} />
+            )
           )}
         </div>
       </ContentSection>
