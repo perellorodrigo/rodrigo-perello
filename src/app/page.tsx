@@ -76,7 +76,7 @@ const Banner = ({ handleArrowClick }: { handleArrowClick: () => void }) => (
           <Text.Heading level="h3">
             Full Stack Software Enginneer @ Koala.
           </Text.Heading>
-          <div className="relative flex flex-col md:flex-row items-center justify-evenly p-8">
+          <div className="relative flex flex-col items-center justify-evenly p-8 space-y-4 md:flex-row md:space-y-0">
             <div className="inline-flex space-x-2">
               <a href="https://www.linkedin.com/in/rodrigo-perello-4a392b11b/">
                 <Text.Paragraph asSpan>Linkedin</Text.Paragraph>
