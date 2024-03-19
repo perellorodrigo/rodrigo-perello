@@ -26,8 +26,8 @@ const Card = ({ content }: CardProps) => {
     };
 
     const observer = new IntersectionObserver(cb, {
-      rootMargin: '100px',
-      threshold: 0.5,
+      rootMargin: '-50px',
+      threshold: 0,
     });
 
     if (current) observer.observe(current);
