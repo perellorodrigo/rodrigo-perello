@@ -29,7 +29,8 @@ const Arrow = ({
   <div
     className={classNames(
       'absolute bottom-8 left-1/2 transform -translate-x-1/2',
-      'text-neutral-300 hover:text-neutral-100',
+      'text-neutral-900 hover:text-sky-700',
+      'dark:text-neutral-300 dark:hover:text-neutral-100',
       'transition-opacity duration-700',
       direction === 'up' && 'rotate-180',
       visible ? 'opacity-100' : 'opacity-0 pointer-events-none'

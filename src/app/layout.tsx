@@ -1,7 +1,7 @@
 import './globals.css';
 
-import classNames from 'classnames';
 import { Analytics } from '@vercel/analytics/react';
+import { AppProvider } from '@/components/AppProvider';
 
 export const metadata = {
   title: 'Rodrigo Perello',
@@ -14,16 +14,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`dark `}>
-      <body
-        className={classNames(
-          'relative',
-          'h-screen dark:bg-neutral-900 text-neutral-400'
-        )}
-      >
-        <main>{children}</main>
-        <Analytics />
-      </body>
-    </html>
+    <AppProvider>
+      <main>{children}</main>
+      <Analytics />
+    </AppProvider>
   );
 }

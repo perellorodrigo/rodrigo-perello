@@ -47,6 +47,27 @@ const _StarsAnimation = () => {
   );
 };
 
+const BannerLink = ({
+  href,
+  label,
+  openInNewTab,
+}: {
+  href: string;
+  label: string;
+  openInNewTab?: boolean;
+}) => (
+  <a
+    href={href}
+    className="dark:hover:text-neutral-100 hover:text-sky-700"
+    {...(openInNewTab && {
+      target: '_blank',
+      rel: 'noopener noreferrer',
+    })}
+  >
+    <Text>{label}</Text>
+  </a>
+);
+
 const StarsAnimation = memo(_StarsAnimation);
 
 const ContentSection = forwardRef<HTMLDivElement, PropsWithChildren>(
@@ -117,40 +138,23 @@ const Banner = ({
             </a>
           </Text.Heading>
           <div className="relative flex flex-col items-center justify-evenly p-8 space-y-4 md:flex-row md:space-y-0">
-            <div className="inline-flex space-x-2">
-              <a
-                href="https://www.linkedin.com/in/rodrigo-perello-4a392b11b/"
-                className="hover:text-neutral-100"
-              >
-                <Text>Linkedin</Text>
-              </a>
-            </div>
-            <div className="inline-flex space-x-2">
-              <a
-                href="mailto:hello@rodrigoperello.com"
-                className="hover:text-neutral-100"
-              >
-                <Text>Email</Text>
-              </a>
-            </div>
-            <div className="inline-flex space-x-2">
-              <a
-                href="https://github.com/perellorodrigo"
-                className="hover:text-neutral-100"
-              >
-                <Text>Github</Text>
-              </a>
-            </div>
-            <div className="inline-flex space-x-2">
-              <a
-                href={'/Rodrigo_Perello_Resume_2024-03.pdf'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-neutral-100"
-              >
-                <Text>Resume</Text>
-              </a>
-            </div>
+            <BannerLink
+              href="https://www.linkedin.com/in/rodrigo-perello-4a392b11b/"
+              label={'Linkedin'}
+            />
+            <BannerLink
+              href="mailto:hello@rodrigoperello.com"
+              label={'Email'}
+            />
+            <BannerLink
+              href="https://github.com/perellorodrigo"
+              label={'Github'}
+            />
+            <BannerLink
+              href={'/Rodrigo_Perello_Resume_2024-03.pdf'}
+              label={'Resume'}
+              openInNewTab
+            />
           </div>
         </div>
       </div>

@@ -79,7 +79,10 @@ const NodeRenderer = (node: RichTextNode) => {
 
   const NodeElement = nodeElementLookup[node.nodeType];
   return (
-    <NodeElement size={node.size} className="my-2">
+    <NodeElement
+      size={node.size}
+      className="my-2 text-neutral-500 dark:text-neutral-400"
+    >
       {thisValue}
     </NodeElement>
   );

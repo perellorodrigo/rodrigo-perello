@@ -61,7 +61,10 @@ const Card = ({ content }: CardProps) => {
         {content.tags?.map((tag, index) => (
           <span
             key={index}
-            className="m-2 outline outline-1 rounded text-neutral-400 text-xs p-1.5 font-medium"
+            className={classNames(
+              'text-neutral-700 dark:text-neutral-400',
+              'm-2 outline outline-1 rounded text-xs p-1.5 font-medium'
+            )}
           >
             {tag}
           </span>
