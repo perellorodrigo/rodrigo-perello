@@ -14,6 +14,7 @@ import Text from '@/components/Text';
 import Heading from '@/components/Text/Heading';
 import { timelineContent } from '@/content/timeline';
 import Arrow from '@/components/Arrow';
+import { LinkIcon } from '@heroicons/react/24/outline';
 
 const _StarsAnimation = () => {
   const stars = Array.from({ length: 50 }, (_, i) => {
@@ -26,10 +27,10 @@ const _StarsAnimation = () => {
   });
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {stars.map((star, i) => {
         return (
-          <div
+          <span
             key={i}
             className="absolute w-1 h-1 bg-white rounded-full animate-stars"
             style={{
@@ -106,7 +107,14 @@ const Banner = ({
         <div className={classNames('p-6 space-y-4 max-w-xl mx-auto')}>
           <Text.Heading level="h1">Hi 👋🏻, I’m Rod.</Text.Heading>
           <Text.Heading level="h3">
-            Full Stack Software Engineer @ Koala.
+            Full Stack Software Engineer @{' '}
+            <a
+              href="https://koala.com/en-au"
+              className="group cursor-pointer relative inline-flex items-center hover:text-neutral-100"
+            >
+              <span>Koala</span>
+              <LinkIcon className="scale-x-0 group-hover:scale-x-100 transition-transform ml-1 h-4 w-4" />
+            </a>
           </Text.Heading>
           <div className="relative flex flex-col items-center justify-evenly p-8 space-y-4 md:flex-row md:space-y-0">
             <div className="inline-flex space-x-2">
