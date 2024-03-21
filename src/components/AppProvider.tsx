@@ -19,7 +19,7 @@ export const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
           <button
             className={classNames(
               'cursor-pointer relative w-12 h-7 inline-flex rounded-full',
-              'justify-around dark:bg-neutral-700 bg-orange-400 text-neutral-700 shadow transition-colors duration-500'
+              'justify-around dark:bg-neutral-700 bg-orange-500 text-neutral-700 shadow transition-colors duration-500'
             )}
             onClick={() => setDarkThemeEnabled((isEnabled) => !isEnabled)}
           >

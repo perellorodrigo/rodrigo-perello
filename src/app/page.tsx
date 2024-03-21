@@ -21,7 +21,7 @@ const _StarsAnimation = () => {
     return {
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 2,
+      size: Math.random() * 3,
       delay: Math.random() * 5,
     };
   });
@@ -32,7 +32,7 @@ const _StarsAnimation = () => {
         return (
           <span
             key={i}
-            className="absolute w-1 h-1 bg-white rounded-full animate-stars"
+            className="absolute w-1 h-1 dark:bg-white bg-orange-500 rounded-full animate-stars"
             style={{
               top: `${star.y}%`,
               left: `${star.x}%`,
@@ -58,7 +58,7 @@ const BannerLink = ({
 }) => (
   <a
     href={href}
-    className="dark:hover:text-neutral-100 hover:text-sky-700"
+    className="dark:hover:text-neutral-100 hover:text-orange-500"
     {...(openInNewTab && {
       target: '_blank',
       rel: 'noopener noreferrer',
@@ -131,7 +131,7 @@ const Banner = ({
             Full Stack Software Engineer @{' '}
             <a
               href="https://koala.com/en-au"
-              className="group cursor-pointer relative inline-flex items-center hover:text-neutral-100"
+              className="group cursor-pointer relative inline-flex items-center hover:text-orange-500 dark:hover:text-neutral-100"
             >
               <span>Koala</span>
               <LinkIcon className="scale-x-0 group-hover:scale-x-100 transition-transform ml-1 h-4 w-4" />
