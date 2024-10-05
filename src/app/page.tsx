@@ -151,7 +151,7 @@ const Banner = ({
               label={'Github'}
             />
             <BannerLink
-              href={'/Rodrigo_Perello_Resume_2024-03.pdf'}
+              href={'/Rodrigo_Perello_Resume_2024-10.pdf'}
               label={'Resume'}
               openInNewTab
             />
