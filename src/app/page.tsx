@@ -195,9 +195,10 @@ export default function Home() {
         <Text.Paragraph>
           Senior Full Stack Software Engineer with an easy going personality and
           creative approach to problem-solving. Demonstrated expertise in
-          ReactJS, Node, NextJS, GraphQL, and AWS services, with strong
-          experience in e-commerce solutions and operational system
-          integrations.
+          creating full stack applications within AWS, with a deep technical
+          understanding of <b>Typescript</b>, <b>Go</b>, <b>Node.js</b> and{' '}
+          <b>Next.js</b>, with strong experience in e-commerce solutions and
+          operational system integrations.
         </Text.Paragraph>
         <Text.Paragraph>
           Adept at leading feature development and implementing robust testing

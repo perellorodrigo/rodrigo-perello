@@ -126,6 +126,11 @@ const Koala: TimelineContent = {
           {
             nodeType: 'li',
             value:
+              'Implemented backend with Golang, documented with OpenAPI Specification and deployed with a code as infrastructure approach using AWS CDK.',
+          },
+          {
+            nodeType: 'li',
+            value:
               'Developed a storefront application from scratch using NextJS, seamlessly integrating with a headless Commercetools e-commerce backend and proprietary order fulfillment software, enhancing customer experience.',
           },
           {
